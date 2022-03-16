@@ -1,0 +1,59 @@
+#include
+#include
+#include
+#include
+
+char map[100][100]={
+"*#*********",
+"***###*###*",
+"###**#****#",
+"*#**###**#*",
+"***********",
+"#####*##*##",
+"**#*****#*E",
+"***#*###**#",
+"*#*********",
+};
+int N=9,M;
+int curX,curY;
+void printPerson()
+{
+	COORD pos;
+	pos.X = curX ;
+	pos.Y = curY ;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
+	printf("A");
+}
+void printMap()
+{
+	for(int i=0;i=N) curY=N-1;
+			if(map[curY][curX]=='#') curY--;
+			break;
+		case 'a':
+			curX--;
+			if(curX<0) curX=0;
+			if(map[curY][curX]=='#') curX++;
+			break;
+		case 'd':
+			curX++;
+			if(curX>=M) curX=M-1;
+			if(map[curY][curX]=='#') curX--;
+			break;			
+	}
+}
+int main()
+{
+	char t;
+	M=strlen(map[0]);
+	while(1)
+	{
+		system("cls");
+		printMap();
+		t=getch();
+		Move(t);
+		if(map[curY][curX]=='E'){
+		printf("通过成功");
+		break; 
+		} 
+	}
+}
